@@ -1,0 +1,365 @@
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background: #f8f9fa;
+}
+
+/* Quiz styles */
+.quiz label {
+  display: block;
+  margin-bottom: 4px;
+}
+
+/* Layout styles */
+.app-layout {
+  display: flex;
+  min-height: 100vh;
+  background-color: #fff;
+  padding-top: 80px; /* Space for fixed navbar */
+}
+
+.main-section {
+  flex: 3;
+  padding: 2rem;
+  overflow-y: auto;
+}
+
+.side-section {
+  flex: 1;
+  border-left: 2px solid #e5e7eb;
+  background-color: #f9fafb;
+  padding: 2rem;
+  overflow-y: auto;
+}
+
+/* Navigation styles */
+#menu.navbar {
+  background-color: #ffffff;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+#menu.navbar-default {
+  border: none;
+  background-color: transparent;
+}
+
+#menu.navbar-fixed-top {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.navbar-brand {
+  font-size: 24px;
+  font-weight: 700;
+  color: #2c3e50 !important;
+  padding: 15px;
+  transition: color 0.3s ease;
+  
+}
+
+.navbar-brand:hover {
+  color: #3498db !important;
+}
+
+.navbar-nav {
+  margin-right: -100px;
+}
+
+.auth-buttons {
+  margin-left: auto !important;
+  float: right !important;
+}
+
+.navbar-nav > li > a {
+  margin-top: 10px;
+  font-size: 25px;
+  font-weight: 500;
+  color: #2c3e50 !important;
+  padding: 0.8rem 1.4rem !important;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.navbar-nav > li > a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background-color: #3498db;
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.navbar-nav > li > a:hover::after {
+  width: 80%;
+}
+
+.navbar-nav > li > a:hover,
+.navbar-nav > li > a:focus {
+  color: #3498db !important;
+  background-color: transparent !important;
+}
+
+.navbar-toggle {
+  border: none;
+  background: transparent !important;
+  margin: 1rem;
+}
+
+.navbar-toggle .icon-bar {
+  background-color: #2c3e50;
+  width: 22px;
+  transition: all 0.3s ease;
+}
+
+.navbar-toggle:hover .icon-bar {
+  background-color: #3498db;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Responsive navigation */
+@media (max-width: 768px) {
+  #menu.navbar {
+    padding: 0.5rem 0;
+  }
+
+  .navbar-collapse {
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .navbar-nav > li > a {
+    padding: 1rem 1.5rem !important;
+  }
+
+  .navbar-nav > li > a::after {
+    display: none;
+  }
+
+  .navbar-brand {
+    padding-left: 1rem;
+  }
+
+  .app-layout {
+    flex-direction: column;
+  }
+
+  .side-section {
+    border-left: none;
+    border-top: 2px solid #e5e7eb;
+  }
+}
+
+/* Animation for navbar items */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.navbar-nav > li {
+  animation: fadeIn 0.5s ease forwards;
+  animation-delay: calc(0.1s * var(--item-index, 0));
+}
+
+/* Header section styles */
+header {
+  width: 100%;
+  background-color: #ffffff;
+  padding: 2rem 0;
+  margin-top: 80px;
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Login/Signup buttons */
+.navbar-nav > li > a[href="#login"],
+.navbar-nav > li > a[href="#signup"] {
+  margin: 10px 5px;
+  padding: 5px 15px !important;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.navbar-nav > li > a[href="#login"] {
+  border: 1px solid #3498db;
+  color: #3498db !important;
+}
+
+.navbar-nav > li > a[href="#login"]:hover {
+  background-color: #3498db !important;
+  color: white !important;
+}
+
+.navbar-nav > li > a[href="#signup"] {
+  background-color: #3498db;
+  color: white !important;
+  border: 1px solid #3498db;
+}
+
+.navbar-nav > li > a[href="#signup"]:hover {
+  background-color: #2980b9 !important;
+  border-color: #2980b9;
+}
+
+/* Remove the underline animation for login/signup buttons */
+.navbar-nav > li > a[href="#login"]::after,
+.navbar-nav > li > a[href="#signup"]::after {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .navbar-nav > li > a[href="#login"],
+  .navbar-nav > li > a[href="#signup"] {
+    margin: 5px 15px;
+    text-align: center;
+  }
+}
+
+#brand{
+  margin-left: -190px;
+  font-size: 35px;
+}
+
+#logsig{
+  margin-right: 10px;
+}
+
+/* --- Alternative, non-centered layout for the form + quiz --- */
+/* Left sticky control panel (form) + right content area (quiz) */
+@media (min-width: 720px) {
+  /* Keep form in normal flow under Header (not fixed) */
+  form {
+    position: relative;
+    margin: 18px 20px 0 20px; /* below header */
+    width: auto;
+    height: auto;
+    overflow: visible;
+    padding: 18px;
+    border-radius: 10px;
+    background: linear-gradient(180deg, rgba(53,128,208,0.04), rgba(255,255,255,0.98));
+    border: 1px solid rgba(52,152,219,0.08);
+    box-shadow: 0 8px 28px rgba(44,62,80,0.04);
+  }
+
+  form h3 {
+    margin-bottom: 8px;
+    color: #23495f;
+    font-size: 18px;
+  }
+
+  form .group {
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px dashed rgba(52,152,219,0.06);
+  }
+
+  /* Quiz area flows normally below the form; add padding and spaced question cards */
+  .quiz {
+    margin: 14px 20px 40px 20px;
+    padding: 12px 18px;
+  }
+
+  .quiz h2 {
+    font-size: 22px;
+    color: var(--brand, #3498db);
+    margin-bottom: 12px;
+  }
+
+  /* Each question: color, padding and ~15px right margin as requested */
+  .quiz > div {
+    display: block;
+    padding: 14px 16px;
+    border-radius: 8px;
+    margin: 0 15px 14px 0; /* right margin ~15px */
+    background: #ffffff;
+    border: 1px solid rgba(41,128,185,0.06);
+    box-shadow: 0 6px 18px rgba(44,62,80,0.03);
+  }
+
+  /* Option pills for wide screens */
+  .quiz label {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 12px;
+    margin: 6px 6px 6px 0;
+    border-radius: 999px;
+    cursor: pointer;
+    border: 1px solid rgba(52,152,219,0.06);
+    transition: background 0.12s ease, transform 0.08s ease;
+  }
+
+  .quiz label:hover {
+    transform: translateY(-2px);
+    background: rgba(52,152,219,0.04);
+  }
+
+  .quiz input[type="radio"] {
+    accent-color: var(--brand, #3498db);
+    width: 16px;
+    height: 16px;
+  }
+
+  /* Align submit quiz button to the right without float */
+  .quiz button {
+    display: inline-block;
+    margin-left: auto;
+    display: block;
+    width: max-content;
+  }
+}
+
+/* Small screens: stack panel and quiz vertically, but keep distinct look */
+@media (max-width: 719px) {
+  form {
+    position: relative;
+    width: auto;
+    margin: 14px;
+    height: auto;
+    top: 0;
+    border-radius: 10px;
+    padding: 14px;
+  }
+
+  .quiz {
+    margin: 8px;
+    padding: 12px;
+  }
+
+  .quiz label {
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .quiz button {
+    float: none;
+    width: 100%;
+  }
+}
