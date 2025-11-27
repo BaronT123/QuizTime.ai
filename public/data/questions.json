@@ -1,0 +1,34 @@
+{
+  "questions": [
+    {
+      "id": 1,
+      "question": "What does HTML stand for?",
+      "options": [
+        "Hyper Text Markup Language",
+        "High Tech Modern Language",
+        "Home Tool Markup Language",
+        "Hyperlinks and Text Markup Language"
+      ]
+    },
+    {
+      "id": 2,
+      "question": "Which HTML tag is used to define an unordered list?",
+      "options": ["<ol>", "<ul>", "<li>", "<list>"]
+    },
+    {
+      "id": 3,
+      "question": "Which attribute is used in HTML to provide an alternate text for an image?",
+      "options": ["title", "src", "alt", "href"]
+    },
+    {
+      "id": 4,
+      "question": "Which HTML element is used for the largest heading?",
+      "options": ["<heading>", "<h6>", "<h1>", "<head>"]
+    },
+    {
+      "id": 5,
+      "question": "Which HTML element is used to insert a line break?",
+      "options": ["<br>", "<lb>", "<break>", "<hr>"]
+    }
+  ]
+}
