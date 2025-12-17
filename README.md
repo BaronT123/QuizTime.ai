@@ -6,6 +6,10 @@
 QuizTime.ai is a full-stack AI-powered quiz generation platform that allows users to upload PDFs and instantly generate interactive quizzes. The application is designed to help users test their understanding of technical documents through dynamically generated questions and immediate feedback.
 
 ---
+## Demo Video
+
+https://github.com/BaronT123/QuizTime.ai/blob/main/quiztime.mp4
+
 
 ## 🚀 Features (v1.0.0)
 
