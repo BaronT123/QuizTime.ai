@@ -8,6 +8,8 @@ import { Header } from "./Header";
 import { useEffect, useState } from "react";
 import JsonData from "./data/data.json";
 import "./App.css";
+import Signup from "./Signup";
+import { Routes, Route } from "react-router-dom";
 
 function App() {
  
@@ -23,14 +25,34 @@ function App() {
     
     <div>
       <Navigation />
-      <Header data={landingPageData.Header} />
-      {selectedQuiz ? (
-        <QuizDetails quiz={selectedQuiz} onClose={() => setSelectedQuiz(null)} />
-      ) : (
-        <FormQuiz />
-      )}
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <>
+              
+
+              {selectedQuiz ? (
+                <QuizDetails
+                  quiz={selectedQuiz}
+                  onClose={() => setSelectedQuiz(null)}
+                />
+              ) : (
+                <>
+                <Header data={landingPageData.Header} />
+                <FormQuiz />
+                </>
+              )}
+            </>
+          }
+        />
+        <Route path="/signup" element={<Signup />} />
+        {/* <Route path="/login" element={<Login />} /> */}
+      </Routes>
+      
 
       <History onViewDetails={setSelectedQuiz} />
+      
     </div>
     
     

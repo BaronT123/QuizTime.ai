@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 export const Navigation = (props) => {
   return (
     <nav id="menu" className="navbar navbar-default navbar-fixed-top">
@@ -50,14 +50,14 @@ export const Navigation = (props) => {
           </ul>
           <ul className="nav navbar-nav navbar-right auth-buttons">
             <li>
-              <a href="#login" className="page-scroll">
+              <Link to="/login" className="page-scroll">
                 Log In
-              </a>  
+              </Link>  
             </li>
             <li className="logsig">
-              <a href="#signup" className="page-scroll">
+              <Link to="/signup" className="page-scroll">
                 Sign Up
-              </a>
+              </Link>
             </li>
           </ul>
         </div>

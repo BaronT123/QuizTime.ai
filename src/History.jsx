@@ -1,22 +1,34 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./History.css";
 
 function History({ onViewDetails }) {
   const [isOpen, setIsOpen] = useState(false);
   const [history, setHistory] = useState([]);
-  const [selectedQuiz, setSelectedQuiz] = useState(null);
+  const [loading, setLoading] = useState(false);
 
-  const toggleHistory = () => {
-    setIsOpen(!isOpen);
+  const toggleHistory = async () => {
+    setIsOpen((prev) => !prev);
+
+    // Fetch only when opening
     if (!isOpen) {
-      const stored = JSON.parse(localStorage.getItem("quizHistory")) || [];
-      setHistory(stored.reverse()); // Show newest first
+      try {
+        setLoading(true);
+        const res = await fetch("http://localhost:5000/api/quizzes");
+        const data = await res.json();
+        setHistory(data);
+      } catch (err) {
+        console.error("Failed to fetch quiz history", err);
+      } finally {
+        setLoading(false);
+      }
     }
   };
 
   const viewQuizDetails = (quiz) => {
-    setSelectedQuiz(quiz);
-    if (typeof onViewDetails === 'function') onViewDetails(quiz);
+    if (typeof onViewDetails === "function") {
+      onViewDetails(quiz);
+    }
+    setIsOpen(false); // close panel when viewing details
   };
 
   return (
@@ -28,36 +40,34 @@ function History({ onViewDetails }) {
       <div className={`history-panel ${isOpen ? "open" : ""}`}>
         <div className="history-content">
           <h3>Quiz History</h3>
-          {history.length === 0 ? (
+
+          {loading ? (
+            <p>Loading...</p>
+          ) : history.length === 0 ? (
             <p>No quizzes taken yet.</p>
           ) : (
             <ul>
-              {history.map((h, i) => (
-                <li key={i} className="history-item">
+              {history.map((h) => (
+                <li key={h._id} className="history-item">
                   <div className="quiz-summary">
-                    <p><strong>File:</strong> {h.pdfName}</p>
-                    <p><strong>Date:</strong> {new Date(h.date).toLocaleString()}</p>
-                    <p><strong>Score:</strong> {h.score}</p>
-                    <button 
+                    <p>
+                      <strong>File:</strong> {h.pdfName}
+                    </p>
+                    <p>
+                      <strong>Date:</strong>{" "}
+                      {new Date(h.date).toLocaleString()}
+                    </p>
+                    <p>
+                      <strong>Score:</strong> {h.score}
+                    </p>
+
+                    <button
                       onClick={() => viewQuizDetails(h)}
                       className="view-details-btn"
                     >
                       View Details
                     </button>
                   </div>
-                  
-                  {/* {selectedQuiz === h && (
-                    <div className="quiz-details">
-                      <h4>Quiz Details</h4>
-                      {h.questions.map((q, qIdx) => (
-                        <div key={qIdx} className="question-review">
-                          <p><strong>Q{qIdx + 1}:</strong> {q.question}</p>
-                          <p>Your answer: {h.userAnswers[qIdx] || 'Not answered'}</p>
-                          <p>Correct answer: {q.options[q.answer]}</p>
-                        </div>
-                      ))}
-                    </div>
-                  )} */}
                 </li>
               ))}
             </ul>

@@ -77,7 +77,7 @@ function FormQuiz() {
     return () => window.removeEventListener("showQuizResult", handler);
   }, []);
 
-  const evaluateQuiz = () => {
+  const evaluateQuiz = async () => {
     if (quizSubmitted) return;
 
     let correctCount = 0;
@@ -100,9 +100,18 @@ function FormQuiz() {
       userAnswers: answers,
     };
 
-    history.push(newEntry);
-    localStorage.setItem("quizHistory", JSON.stringify(history));
+    // history.push(newEntry);
+    // localStorage.setItem("quizHistory", JSON.stringify(history));
+    await fetch("http://localhost:5000/api/quizzes", {
+    method: "POST",
+    headers: {
+    "Content-Type": "application/json",
+    },
+    body: JSON.stringify(newEntry),
+});
+
   };
+  
 
   return (
     <div className="form-container">
